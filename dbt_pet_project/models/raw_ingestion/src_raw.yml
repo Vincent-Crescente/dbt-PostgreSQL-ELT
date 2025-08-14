@@ -1,0 +1,38 @@
+version: 2
+
+sources:
+  - name: raw
+    tags: [raw_data]
+    description: "Initial ingestion of source files from the `raw_data` folder. 
+     At this stage, ID columns are checked with not_null tests to ensure they are never empty, 
+     even in raw form. Columns with inconsistent formats (e.g., integers mixed with dashes) are 
+     stored as text for now, with type cleaning handled in later transformations."
+    schema: public  # or the schema where your raw tables live
+    tables:
+      - name: raw_pet_health
+        description: "pet_id (int), date as DATE, issue and resolution as TEXT. Read in from CSV."
+        columns:
+        - name: pet_id
+          tests:
+           - not_null
+        - name: date   
+        - name: issue 
+        - name: resolution
+
+      - name: raw_users
+        description: "owner_id (int), pet_id (int), ower_age_group and pet_type as TEXT. Read in from CSV."
+        columns:
+        - name: pet_id
+          tests:
+           - not_null
+
+      - name: raw_pet_activity
+        description: "pet_id (int), date as DATE, activity_type and duration as TEXT. Read in from CSV."
+        columns:
+        - name: date
+          tests:
+           - not_null
+        - name: activity_type
+          tests:
+           - not_null
+

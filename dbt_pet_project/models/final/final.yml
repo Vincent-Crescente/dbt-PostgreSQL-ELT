@@ -1,0 +1,63 @@
+version: 2
+
+models:
+  - name: final_join_w_users_4
+  
+    description: "This is the final consolidated table after all transformations. 
+      It joins the cleaned activity data (from `clean_fields_3`) with the raw users table 
+      to produce a complete view of pets, their activities, and owner information. 
+      Final validation checks are applied to ensure data quality and consistency."
+    columns:
+      - name: pet_id
+        data_type: integer
+        description: Unique identifier for each pet.
+        tests:
+          - not_null
+
+      - name: date
+        data_type: date
+        description: Date of the event or activity.
+        tests:
+          - not_null
+
+      - name: activity_type
+        data_type: text
+        description: Type of activity or 'Health' if related to health events.
+        tests:
+          - not_null
+          
+      - name: duration_minutes
+        data_type: integer
+        description: Duration of the activity in minutes; 0 for health events.
+        
+      - name: issue
+        data_type: text
+        description: Description of any health issue reported.
+
+      - name: resolution
+        data_type: text
+        description: Resolution or outcome of the health issue.
+
+      - name: owner_id
+        data_type: integer
+        description: Unique identifier for the pet's owner.
+        tests:
+          - not_null
+
+      - name: owner_age_group
+        data_type: text
+        description: Age group category of the pet owner.
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['18-25', '26-35', '36-45', '46-55', '56-65', '66+']
+
+      - name: pet_type
+        data_type: text
+        description: Type or species of the pet.
+        tests:
+          - not_null
+
+    contract:
+      enforced: true
+     
