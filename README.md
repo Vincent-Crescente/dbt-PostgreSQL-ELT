@@ -103,17 +103,22 @@ Worked within the public schema, running ad-hoc SQL queries directly in the CLI 
 ![dbt_linage_graph](images/dbt_lineage_graph.JPG)
 
 
-## Miscellaneous
-```
-The data used is used in my other projects to easily connect the common moving parts of the transformations
-asked of in the datacamp sample practice exam defined above. Thought this would be an interesting way to check
-for complete/correctness by comparing to the output from the last git project. These projects use the same data
-but with different ways of acquiring it and transforming it.
-```
+## Related Projects and Shared Dataset
 
-🔗 [PySpark_Azure_Excel_Pipeline](https://github.com/Vincent-Crescente/PySpark_Azure_Excel_Pipeline)  - (Ingestion - Reading from Blob Storage, Transformations - PySpark, Output - Excel Report)
+The dataset used in this project is shared across multiple pipelines to demonstrate common patterns in data ingestion and transformation. While the underlying data is the same, each project explores a different approach to acquiring and transforming it, providing a useful way to compare completeness and correctness.  
 
+- **This Project:**  
+  - **Ingestion:** CSV files → PostgreSQL tables  
+  - **Transformations:** dbt  
 
+- [**PySpark_Azure_Excel_Pipeline**](https://github.com/Vincent-Crescente/PySpark_Azure_Excel_Pipeline)  
+  - **Ingestion:** Blob Storage  
+  - **Transformations:** PySpark  
+  - **Output:** Excel report (xlsx file)
 
+- [**Event-Driven-Azure-Trigger-Pipeline**](https://github.com/Vincent-Crescente/Event-Driven-Azure-Trigger-Pipeline)  
+  - **Ingestion:** Event-driven from Blob Storage  
+  - **Transformations:** Pandas  
+  - **Output:** Saved to another folder in Blob Storage (csv file)
 
-
+**Theme:** Different ingestion sources and transformation tools, same dataset, multiple ways to process and validate the data.
